@@ -20,7 +20,10 @@ def createGrid(length, width):
 def prettyprint():
     for y in gameArray:
         for x in y:
-            print(x,end="")
+            if x == 1:
+                print("▮", end="")
+            else:
+                print("▯", end="")
         print()
 
 
@@ -65,6 +68,32 @@ def step():
     return gameArrayCopy
 
 
+#for y in range(len(gameArray)):
+#    for x in range(len(gameArray)):
+#        print(numNeighbors(x,y), end="")
+#    print()
 
+validinput = False
+while not validinput:
+    try:
+        y = int(input("Enter the length of the grid: ").strip())
+        x = int(input("Enter the width of the grid: ").strip())
+        validinput = True
+    except:
+        print("invalid input, try again\n")
 
+gameArray = createGrid(y,x)
 
+populate()
+
+print("\nWelcome to Conway's game of life!")
+while True:
+    print()
+    prettyprint()
+    value = input("\nPress enter to advance a step or type q to quit: ").strip()
+    if value == "":
+        gameArray = step()
+    elif value == "q" or "Q":
+        break
+    else:
+        print(f"Unknown input {value}. Accepted values are: <blank>, 'q', or 'Q'")
