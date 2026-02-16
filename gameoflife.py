@@ -18,9 +18,9 @@ def createGrid(length, width):
     return [([0] * width) for x in range(length)]
 
 def prettyprint():
-    for x in gameArray:
-        for y in x:
-            print(y,end="")
+    for y in gameArray:
+        for x in y:
+            print(x,end="")
         print()
 
 
@@ -32,22 +32,39 @@ def populate():
 
 def numNeighbors(x,y):
     number = 0
-    if isAlive(y-1,x-1):
+    if isAlive(x-1,y-1):
         number+=1
-    if isAlive(y-1,x)== 1:
+    if isAlive(x-1,y):
         number+=1
-    if isAlive(y-1,x+1)== 1:
+    if isAlive(x-1,y+1):
         number+=1
-    if isAlive(y,x-1)== 1:
+    if isAlive(x,y-1):
         number+=1
-    if isAlive(y,x+1)== 1:
+    if isAlive(x,y+1):
         number+=1
-    if isAlive(y+1,x-1)== 1:
+    if isAlive(x+1,y-1):
         number+=1
-    if isAlive(y+1,x)== 1:
+    if isAlive(x+1,y):
         number+=1
-    if isAlive(y+1,x+1)== 1:
+    if isAlive(x+1,y+1):
         number+=1
 
     return number
+
+
+def step():
+    gameArrayCopy = copy.deepcopy(gameArray)
+    for y in range(len(gameArray)):
+        for x in range(len(gameArray[y])):
+            if isAlive(x,y):
+                if not (1 < numNeighbors(x,y) < 4):
+                    setDead(x,y,gameArrayCopy)
+            else:
+                if numNeighbors(x,y) == 3:
+                    setAlive(x,y,gameArrayCopy)
+    return gameArrayCopy
+
+
+
+
 
