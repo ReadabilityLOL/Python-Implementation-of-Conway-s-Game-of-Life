@@ -1,3 +1,5 @@
+from pyscript import web, when, window
+import math
 import random
 import copy
 
@@ -67,36 +69,65 @@ def step():
                     setAlive(x,y,gameArrayCopy)
     return gameArrayCopy
 
+def updatePage():
+    grid = web.page["#gamegrid"]
+    grid.innerHTML = ""
+    for y in gameArray:
+        row = web.div(classes=["row"])
+        for x in y:
+            if x == 1:
+                row.append(web.div(classes=["cell","alive"]))
+            else:
+                row.append(web.div(classes=["cell","dead"]))
+        grid.append(row)
+
+gameArray = createGrid(
+    math.floor(window.screen.availHeight/60),
+    math.floor(window.screen.availWidth/60)
+)
+
+populate()
+
+updatePage()
+
+@when("click","#advance")
+def advance():
+    global gameArray
+    gameArray = step()
+    updatePage()
 
 #for y in range(len(gameArray)):
 #    for x in range(len(gameArray)):
 #        print(numNeighbors(x,y), end="")
 #    print()
 
-print("\nWelcome to Conway's game of life!")
+#print("\nWelcome to Conway's game of life!")
+#
+#validinput = False
+#while not validinput:
+#    try:
+#        y = int(await input("\nEnter the length of the grid: "))
+#        x = int(await input("Enter the width of the grid: "))
+#        validinput = True
+#    except KeyboardInterrupt:
+#        quit()
+#    except:
+#        print("\ninvalid input, try again")
+#
+#gameArray = createGrid(y,x)
+#
+#populate()
+#
+#while True:
+#    print()
+#    prettyprint()
+#    value = (await input("\nPress enter to advance a step or type q to quit: ")).strip()
+#    if value == "":
+#        gameArray = step()
+#    elif value in ("q", "Q"):
+#        break
+#    else:
+#        print(f"Unknown input: '{value}'. Accepted values are: <blank>, 'q', or 'Q'")
+#
 
-validinput = False
-while not validinput:
-    try:
-        y = int(input("\nEnter the length of the grid: ").strip())
-        x = int(input("Enter the width of the grid: ").strip())
-        validinput = True
-    except KeyboardInterrupt:
-        quit()
-    except:
-        print("\ninvalid input, try again")
 
-gameArray = createGrid(y,x)
-
-populate()
-
-while True:
-    print()
-    prettyprint()
-    value = input("\nPress enter to advance a step or type q to quit: ").strip()
-    if value == "":
-        gameArray = step()
-    elif value in ("q", "Q"):
-        break
-    else:
-        print(f"Unknown input: '{value}'. Accepted values are: <blank>, 'q', or 'Q'")
