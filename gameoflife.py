@@ -69,16 +69,34 @@ def step():
                     setAlive(x,y,gameArrayCopy)
     return gameArrayCopy
 
-def updatePage():
+def createPage():
     grid = web.page["#gamegrid"]
     grid.innerHTML = ""
-    for y in gameArray:
+    for y in range(len(gameArray)):
         row = web.div(classes=["row"])
-        for x in y:
-            if x == 1:
-                row.append(web.div(classes=["cell","alive"]))
+        for x in range(len(gameArray[y])):
+            if gameArray[y][x] == 1:
+                row.append(web.div(classes=["cell","alive"],id=f"a{y}_{x}"))
             else:
-                row.append(web.div(classes=["cell","dead"]))
+                row.append(web.div(classes=["cell","dead"],id=f"a{y}_{x}"))
+        grid.append(row)
+
+def updatePage():
+    grid = web.page["#gamegrid"]
+    for y in range(len(gameArray)):
+        row = web.div(classes=["row"])
+        for x in range(len(gameArray[y])):
+            target = web.page[f"a{y}_{x}"]
+            if gameArray[y][x] == 1:
+                #row.append(web.div(classes=["cell","alive"],id=f"{y}_{x}"))
+                if "dead" in target.classList:
+                    target.classList.add("alive")
+                    target.classList.remove("dead")
+            else:
+                #row.append(web.div(classes=["cell","dead"],id=f"{y}_{x}"))
+                if "alive" in target.classList:
+                    target.classList.add("dead")
+                    target.classList.remove("alive")
         grid.append(row)
 
 gameArray = createGrid(
@@ -86,14 +104,46 @@ gameArray = createGrid(
     math.floor(window.screen.availWidth/60)
 )
 
-populate()
+#populate()
 
-updatePage()
+
+createPage()
 
 @when("click","#advance")
 def advance():
     global gameArray
     gameArray = step()
+    updatePage()
+
+@when("click",".cell")
+def cellclick(event):
+    print("clicked")
+    target = event.target
+    y,x = ((target.id)[1:]).split("_")
+    x = int(x)
+    y = int(y)
+
+    if "alive" in target.classList:
+        target.classList.add("dead")
+        target.classList.remove("alive")
+        gameArray[y][x] = 0
+    elif "dead" in target.classList:
+        target.classList.add("alive")
+        target.classList.remove("dead")
+        gameArray[y][x] = 1
+
+@when("click","#reset")
+def reset():
+    global gameArray
+    for y in range(len(gameArray)):
+        for x in range(len(gameArray[y])):
+            gameArray[y][x] = 0
+    updatePage()
+
+@when("click","#randomize")
+def randomize():
+    reset()
+    populate()
     updatePage()
 
 #for y in range(len(gameArray)):
