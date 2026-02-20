@@ -1,3 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+* {
+  font-family: "Noto Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+}
+  
+h1{
+  padding:10px;
+  min-width: 0px;
+  width: 40%;
+  border: solid 5px black;
+}
+
+h1, button{
+  background-color: #79b5ff;
+  border-radius: 5px;
+
+}
+
+button{
+    margin-top: 10px;
+    font-size: 2ch;
+    border: solid 3px black;
+}
+
 html, body{
   height:100%
   margin:0;
@@ -8,6 +37,8 @@ html, body{
   flex: 1 1 0;
   flex-direction: row;
   min-height: 0;
+  width:90%;
+  margin-left:5%;
 }
 
 .cell{
@@ -23,6 +54,8 @@ html, body{
   display:flex
   flex-direction: column;
   height:100vh;
+  margin-left:20%;
+  margin-right:20%;
 }
 
 .alive{
@@ -34,8 +67,4 @@ html, body{
 }
 
 
-button{
-    margin-top: 10px;
-    font-size: 2ch;
-}
 

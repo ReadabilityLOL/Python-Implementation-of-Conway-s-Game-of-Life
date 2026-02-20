@@ -100,7 +100,7 @@ def updatePage():
         grid.append(row)
 
 gameArray = createGrid(
-    math.floor((window.screen.availHeight/20)*0.9),
+    math.floor((window.screen.availHeight/20)*0.75),
     math.floor(window.screen.availWidth/20)
 )
 
