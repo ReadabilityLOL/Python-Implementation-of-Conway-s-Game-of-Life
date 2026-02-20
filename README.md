@@ -15,3 +15,13 @@ Despite the fact that these are the only rules, the game itself can become surpr
 ## My project
 
 My project is a simple implementation of Conway's Game of Life made in Python, HTML, and CSS, with pyscript used to connect the Python to the HTML and CSS. I used Python because I originally made it a CLI, and because Javascript is scary. It's a bit more limited than the actual game of life, due to problems like it not actually having an infinite board. You can visit the project at [gameoflife.glitched.tech](https://gameoflife.glitched.tech). After the project loads, the user is provided with a blank grid, which can be clicked to toggle between dead and living cells. There are also three buttons available at the bottom, which allow for the ability to randomize the board, reset it, or advance to the next turn, which evaluates all the cells and sets them as living or dead based on the aforementioned rules.
+
+## Screenshots!
+The default screen
+<img width="1827" height="945" alt="Screenshot 2026-02-20 at 17-14-28 " src="https://github.com/user-attachments/assets/b45d8f3d-149d-4a4e-ba5b-44cb76596aba" />
+
+A randomized layout
+<img width="1827" height="945" alt="Screenshot 2026-02-20 at 17-09-43 " src="https://github.com/user-attachments/assets/9d9fe0e8-cfac-47da-be8f-b213b3ee25e1" />
+
+Gosper's Glider Gun
+<img width="1827" height="945" alt="Screenshot 2026-02-20 at 17-13-30 " src="https://github.com/user-attachments/assets/0a7bdcef-0df4-4770-839d-75294da46cd3" />
