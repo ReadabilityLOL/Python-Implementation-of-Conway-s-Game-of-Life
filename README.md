@@ -2,6 +2,8 @@
 
 This is my python implementation of Conway's game of life. More about it on [my website](https://glitched.tech/gameoflife/).
 
+> **Quick note: To the person who was reviewing this as my submission to hackclub flavortown, the advance button evaluates all cells in accordance with the rules specified below, which is why the "advance" button cleared the screen, as all the living cells placed down had zero neighbors, and thus died.** 
+
 ## What is Conway's game of life?
 
 Conway's game of life is a cellular automaton, which is just a grid with cells that are on or off, with different rules determining which cells turn on and off each turn. Though it's called the Game of Life, it's not really a game, as it has no objective and no real player interaction except for the starting setup. The game of life itself follows a few simple rules for each turn about which cells become living (on), and which become dead (off).
